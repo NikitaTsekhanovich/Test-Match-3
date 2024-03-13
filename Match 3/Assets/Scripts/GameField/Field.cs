@@ -24,7 +24,7 @@ namespace GameField
                 return;
             }
             
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         public Field()
@@ -95,6 +95,14 @@ namespace GameField
             return items[currIndex];
         }
 
+        public ItemTypes GetTypeCurrentItem(char[] indexesItem)
+        {
+            var iCurrItem = indexesItem[0] - '0';
+            var jCurrItem = indexesItem[1] - '0';
+
+            return _coordItems[iCurrItem, jCurrItem].GetComponent<Item>().ItemType;
+        }
+
         public void UpdateGameField(char[] indexesItem)
         {
             DestroyItem(indexesItem);
@@ -105,7 +113,7 @@ namespace GameField
         {
             var iCurrItem = indexesItem[0] - '0';
             var jCurrItem = indexesItem[1] - '0';
-            var typeCurrItem = _coordItems[iCurrItem, jCurrItem].GetComponent<Item>().ItemType;
+            var typeCurrItem = GetTypeCurrentItem(indexesItem);
 
             FindAllItems(iCurrItem, jCurrItem, typeCurrItem);
             SpawnItem(iCurrItem, jCurrItem);
