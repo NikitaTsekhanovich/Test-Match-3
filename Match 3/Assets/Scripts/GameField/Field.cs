@@ -98,7 +98,7 @@ namespace GameField
         public void UpdateGameField(char[] indexesItem)
         {
             DestroyItem(indexesItem);
-            SpawnItem();
+            // SpawnItem();
         }
 
         private void DestroyItem(char[] indexesItem)
@@ -108,15 +108,7 @@ namespace GameField
             var typeCurrItem = _coordItems[iCurrItem, jCurrItem].GetComponent<Item>().ItemType;
 
             FindAllItems(iCurrItem, jCurrItem, typeCurrItem);
-            foreach (var coordItem in _coordItems)
-            {
-                if (coordItem == null)
-                {
-                    Destroy(_coordItems[iCurrItem, jCurrItem]);
-                    _coordItems[iCurrItem, jCurrItem] = null;
-                    break;
-                }
-            }
+            SpawnItem(iCurrItem, jCurrItem);
         }
 
         private void FindAllItems(int i, int j, ItemTypes typeCurrItem)
@@ -175,9 +167,38 @@ namespace GameField
             }
         }
 
-        private void SpawnItem()
+        private void SpawnItem(int iCurrItem, int jCurrItem)
         {
-            
+            var random = new Random();
+
+            for (var i = 0; i < SettingsGameField.Width; i++)
+            {
+                for (var j = 0; j < SettingsGameField.Height; j++)
+                {
+
+                    if (_coordItems[i, j] == null)
+                    {
+                        var randomIndex = random.Next(0, 5);
+
+                        // if (_coordItems[iCurrItem, jCurrItem] != null)
+                        // {
+                        //     Destroy(_coordItems[iCurrItem, jCurrItem]);
+                        //     _coordItems[iCurrItem, jCurrItem] = null;
+                        // }
+                        
+                        var newButton = Instantiate(_items[randomIndex]);
+                        var transformNewItem = newButton.transform;
+                
+                        newButton.onClick.AddListener(_inputHandler.Click);
+                        transformNewItem.SetParent(GameObject.FindWithTag("GameField").transform);
+                        transformNewItem.position = new Vector3(-2 + i, -4 + j , 1);
+                        transformNewItem.localScale = new Vector3(1, 1, 1);
+                        newButton.name = $"{newButton.GetComponent<Item>().ItemType} {i}{j}";
+                
+                        _coordItems[i, j] = newButton.gameObject;
+                    }
+                }
+            }
         }
     }
 }
