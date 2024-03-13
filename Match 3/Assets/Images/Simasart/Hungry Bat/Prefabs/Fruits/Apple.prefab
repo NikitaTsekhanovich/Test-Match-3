@@ -60,7 +60,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemTypes: 0
-  maxCountItem: 8
 --- !u!114 &5036001014334394874
 MonoBehaviour:
   m_ObjectHideFlags: 0
