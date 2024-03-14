@@ -2,18 +2,31 @@ using UnityEngine;
 
 namespace GameLogic
 {
-    public class LevelHelper : MonoBehaviour
+    public class LevelHelper : MonoBehaviour, IObserver
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        [SerializeField] private Canvas _sreenLose;
+        [SerializeField] private Canvas _sreenWin;
         
+        public void OnEnable()
+        {
+            MoveHelper.ZeroMovePoint += LoseLevel;
+            ScoreHelper.PointsOverflow += WinLevel;
         }
 
-        // Update is called once per frame
-        void Update()
+        public void OnDisable()
         {
-        
+            MoveHelper.ZeroMovePoint -= LoseLevel;
+            ScoreHelper.PointsOverflow -= WinLevel;
+        }
+
+        private void LoseLevel()
+        {
+            _sreenLose.gameObject.SetActive(true);
+        }
+
+        private void WinLevel()
+        {
+            _sreenWin.gameObject.SetActive(true);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace GameField
         [SerializeField] private List<Button> _items;
         [SerializeField] private InputHandler _inputHandler;
         private GameObject[,] _coordItems;
+        private int _counterDestroyItem;
         public static Field Instance { get; private set; }
 
         private void Awake()
@@ -103,6 +104,8 @@ namespace GameField
             return _coordItems[iCurrItem, jCurrItem].GetComponent<Item>().ItemType;
         }
 
+        public int GetCountDestroyItem() => _counterDestroyItem;
+
         public void UpdateGameField(char[] indexesItem)
         {
             DestroyItem(indexesItem);
@@ -114,7 +117,9 @@ namespace GameField
             var iCurrItem = indexesItem[0] - '0';
             var jCurrItem = indexesItem[1] - '0';
             var typeCurrItem = GetTypeCurrentItem(indexesItem);
+            // _coordItems[0, 0].GetComponent<AudioSource>().Play();
 
+            _counterDestroyItem = 0;
             FindAllItems(iCurrItem, jCurrItem, typeCurrItem);
             SpawnItem(iCurrItem, jCurrItem);
         }
@@ -128,8 +133,10 @@ namespace GameField
                 {
                     if (_coordItems[i - 1, j].GetComponent<Item>().ItemType == typeCurrItem)
                     {
+                        // _coordItems[i - 1, j].GetComponent<AudioSource>().Play();
                         Destroy(_coordItems[i - 1, j]);
                         _coordItems[i - 1, j] = null;
+                        _counterDestroyItem++;
                         FindAllItems(i - 1, j, typeCurrItem);
                     }
                 }
@@ -141,8 +148,10 @@ namespace GameField
                 {
                     if (_coordItems[i, j + 1].GetComponent<Item>().ItemType == typeCurrItem)
                     {
+                        // _coordItems[i, j + 1].GetComponent<AudioSource>().Play();
                         Destroy(_coordItems[i, j + 1]);
                         _coordItems[i, j + 1] = null;
+                        _counterDestroyItem++;
                         FindAllItems(i, j + 1, typeCurrItem);
                     }
                 }
@@ -154,8 +163,10 @@ namespace GameField
                 {
                     if (_coordItems[i, j - 1].GetComponent<Item>().ItemType == typeCurrItem)
                     {
+                        // _coordItems[i, j - 1].GetComponent<AudioSource>().Play();
                         Destroy(_coordItems[i, j - 1]);
                         _coordItems[i, j - 1] = null;
+                        _counterDestroyItem++;
                         FindAllItems(i, j - 1, typeCurrItem);
                     }
                 }
@@ -167,8 +178,10 @@ namespace GameField
                 {
                     if (_coordItems[i + 1, j].GetComponent<Item>().ItemType == typeCurrItem)
                     {
+                        // _coordItems[i + 1, j].GetComponent<AudioSource>().Play();
                         Destroy(_coordItems[i + 1, j]);
                         _coordItems[i + 1, j] = null;
+                        _counterDestroyItem++;
                         FindAllItems(i + 1, j, typeCurrItem);
                     }
                 }

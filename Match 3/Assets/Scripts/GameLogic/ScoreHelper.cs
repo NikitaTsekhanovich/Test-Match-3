@@ -15,7 +15,10 @@ namespace GameLogic
         [SerializeField] private SpriteRenderer _currentImage;
         [SerializeField] private TextMeshProUGUI _goalText;
         [SerializeField] private TextMeshProUGUI _scoreText;
+        private int _randomGoal;
         private ItemTypes _currentItemType;
+
+        public static Action PointsOverflow; 
 
         public ScoreHelper()
         {
@@ -40,9 +43,9 @@ namespace GameLogic
         private void LoadGoalItem()
         {
             var random = new Random();
-            var randomNumber = random.Next(3, 5);
+            _randomGoal = random.Next(4, 6);
 
-            _goalText.text = $"Goal: {randomNumber}x";
+            _goalText.text = $"Goal: {_randomGoal}x";
         }
         
         public void OnEnable()
@@ -57,22 +60,26 @@ namespace GameLogic
 
         private void UpdateValue(ItemTypes itemType, int countItem)
         {
-            Debug.Log(_currentItemType);
             if (itemType == _currentItemType)
             {
-                var newScore = 0;
-
-                for (var i = 1; i < countItem + 1; i++)
-                    newScore += i * 2;
-
-                _scoreText.text = $"{newScore + int.Parse(_scoreText.text)}";
+                // var newScore = 0;
+                //
+                // for (var i = 1; i < countItem + 1; i++)
+                //     newScore += i * 2;
+                //
+                // _scoreText.text = $"{newScore + int.Parse(_scoreText.text)}";
+                _scoreText.text = $"{countItem + int.Parse(_scoreText.text)}";
             }
 
-            // if (int.Parse(_scoreText.text) >= int.Parse(_goalText.text))
-            // {
-            //     Debug.Log("Победа и некст левел");
-            //     // если больше _goalText.text, то экран победы и переход на некст левел
-            // }
+            CheckState();
+        }
+
+        private void CheckState()
+        {
+            if (int.Parse(_scoreText.text) >= _randomGoal)
+            {
+                PointsOverflow?.Invoke();
+            }
         }
     }
 }
