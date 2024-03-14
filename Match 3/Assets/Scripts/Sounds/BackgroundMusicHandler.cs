@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 
 namespace Sounds
 {
-    public class BackgroundMusicHelper : MonoBehaviour
+    public class BackgroundMusicHandler : MonoBehaviour
     {
         [SerializeField] private GameObject _BGMusic;
         private GameObject[] _gmObjects;

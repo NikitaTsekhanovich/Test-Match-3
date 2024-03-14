@@ -16,9 +16,9 @@ namespace GameField
             var item = EventSystem.current.currentSelectedGameObject;
             var indexesItem = item.name.Split(' ')[1].ToCharArray();
             
-            var currItemType = Field.Instance.GetTypeCurrentItem(indexesItem);
-            Field.Instance.UpdateGameField(indexesItem);
-            var counterDestroyItem = Field.Instance.GetCountDestroyItem();
+            var currItemType = FieldCreator.Instance.GetTypeCurrentItem(indexesItem);
+            FieldCreator.Instance.UpdateGameField(indexesItem);
+            var counterDestroyItem = FieldCreator.Instance.GetCountDestroyItem();
 
             OnMoveChanged?.Invoke();
             OnScoreChanged?.Invoke(currItemType, counterDestroyItem);
