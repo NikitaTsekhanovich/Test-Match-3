@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using TMPro;
 using GameField;
+using Scene;
 using Unity.VisualScripting;
 
 namespace GameLogic
@@ -14,11 +15,18 @@ namespace GameLogic
         public void OnEnable()
         {
             InputHandler.OnMoveChanged += UpdateValue;
+            SceneLoader.OnMoveChanged += ResetMove;
         }
         
         public void OnDisable()
         {
             InputHandler.OnMoveChanged -= UpdateValue;
+            SceneLoader.OnMoveChanged -= ResetMove;
+        }
+
+        private void ResetMove()
+        {
+            _moveText.text = "20";
         }
         
         private void UpdateValue()

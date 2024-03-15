@@ -1,5 +1,6 @@
 using System;
 using GameField;
+using ItemsEssence;
 using UnityEngine;
 
 namespace Scene
@@ -7,15 +8,24 @@ namespace Scene
     public class SceneLoader : MonoBehaviour
     {
         [SerializeField] private FieldCreator _fieldCreator;
+        public static Action OnMoveChanged;
+        public static Action<ItemTypes, int> OnScoreChanged;
 
         private void Start()
         {
-            LoadGameField();
+            LoadGameField(false);
         }
 
-        public void LoadGameField()
+        private void LoadGameField(bool isRetry)
         {
-            _fieldCreator.CrField();
+            _fieldCreator.CreateField(isRetry);
+        }
+
+        public void RetryGameField()
+        {
+            LoadGameField(true);
+            OnMoveChanged?.Invoke();
+            OnScoreChanged?.Invoke(ItemTypes.Empty, -1);
         }
     }
 }

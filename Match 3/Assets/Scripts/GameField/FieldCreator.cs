@@ -10,11 +10,27 @@ namespace GameField
 {
     public class FieldCreator : FieldUpdater
     {
-        public void CrField()
+        public void CreateField(bool isRetry)
         {
+            if (isRetry)
+            {
+                ClearField();
+            }
             inputHandler = gameObject.AddComponent<InputHandler>();
             var availableItems = GetAvailableItems();
-            CreateGameField(availableItems);
+            FillGameField(availableItems);
+        }
+
+        private void ClearField()
+        {
+            for (var i = 0; i < SettingsGameField.Width; i++)
+            {
+                for (var j = 0; j < SettingsGameField.Height; j++)
+                {
+                    Destroy(coordItems[i, j]);
+                    coordItems[i, j] = null;
+                }
+            }
         }
 
         private Dictionary<Button, int> GetAvailableItems()
@@ -27,7 +43,7 @@ namespace GameField
             return dictItems;
         }
 
-        private void CreateGameField(Dictionary<Button, int> dictItems)
+        private void FillGameField(Dictionary<Button, int> dictItems)
         {
             for (var i = 0; i < SettingsGameField.Width; i++)
             {

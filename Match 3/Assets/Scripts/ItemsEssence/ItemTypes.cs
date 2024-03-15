@@ -6,6 +6,7 @@ namespace ItemsEssence
         Banana,
         Grape,
         Orange,
-        Pear
+        Pear,
+        Empty
     }
 }

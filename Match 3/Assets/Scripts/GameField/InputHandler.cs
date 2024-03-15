@@ -19,7 +19,7 @@ namespace GameField
             var currItemType = FieldUpdater.Instance.GetTypeCurrentItem(indexesItem);
             FieldUpdater.Instance.UpdateGameField(indexesItem);
             var counterDestroyItem = FieldUpdater.Instance.GetCountDestroyItem();
-            Debug.Log(counterDestroyItem);
+      
             OnMoveChanged?.Invoke();
             OnScoreChanged?.Invoke(currItemType, counterDestroyItem);
         }

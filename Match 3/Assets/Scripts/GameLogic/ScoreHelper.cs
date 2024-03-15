@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using GameField;
 using ItemsEssence;
+using Scene;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -51,11 +52,18 @@ namespace GameLogic
         public void OnEnable()
         {
             InputHandler.OnScoreChanged += UpdateValue;
+            SceneLoader.OnScoreChanged += ResetScore;
         }
         
         public void OnDisable()
         {
             InputHandler.OnScoreChanged -= UpdateValue;
+            SceneLoader.OnScoreChanged -= ResetScore;
+        }
+
+        private void ResetScore(ItemTypes itemType, int countItem)
+        {
+            _scoreText.text = "0";
         }
 
         private void UpdateValue(ItemTypes itemType, int countItem)
