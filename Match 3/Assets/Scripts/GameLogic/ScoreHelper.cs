@@ -44,7 +44,7 @@ namespace GameLogic
         private void LoadGoalItem()
         {
             var random = new Random();
-            _randomGoal = random.Next(4, 6);
+            _randomGoal = random.Next(10, 12);
 
             _goalText.text = $"Goal: {_randomGoal}x";
         }

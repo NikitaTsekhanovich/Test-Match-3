@@ -7,12 +7,12 @@ namespace Scene
     {
         public void LoadNextScene()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            AnimatorLoadingScreen.instance.AnimationFade("Game");
         }
         
         public void LoadPreviousScene()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            AnimatorLoadingScreen.instance.AnimationFade("Menu");
         }
 
         public void Exit()
