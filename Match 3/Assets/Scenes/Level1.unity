@@ -1693,6 +1693,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3412938334945040, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447107820022128755, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+      propertyPath: m_fontSize
+      value: 220
+      objectReference: {fileID: 0}
+    - target: {fileID: 447107820022128755, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 220
+      objectReference: {fileID: 0}
     - target: {fileID: 589625800552993032, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -1881,6 +1893,38 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: Sounds.EffectsSoundHandler, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 4172875218715672937, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1012.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172875218715672937, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 440.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172875218715672937, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -267.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172875218715672937, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 10.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178325962250840771, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1158.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178325962250840771, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 494.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178325962250840771, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 818.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178325962250840771, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -16.59
+      objectReference: {fileID: 0}
     - target: {fileID: 4611505888170045855, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -2057,6 +2101,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: Sounds.EffectsSoundHandler, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 7993318363145229819, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+      propertyPath: m_fontSize
+      value: 220
+      objectReference: {fileID: 0}
+    - target: {fileID: 7993318363145229819, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 220
+      objectReference: {fileID: 0}
     - target: {fileID: 8285635788637117540, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
       propertyPath: m_Name
       value: Button_pause
@@ -2187,7 +2239,38 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 125257703091173841, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 452757941}
+    - targetCorrespondingSourceObject: {fileID: 2319007027855967719, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5685188012342745803}
   m_SourcePrefab: {fileID: 100100000, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+--- !u!1 &5685188012342745802 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2319007027855967719, guid: 6d0568f94e0b2054c8d762e04ab6896f, type: 3}
+  m_PrefabInstance: {fileID: 5685188012342745801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &5685188012342745803
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5685188012342745802}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 5
+  m_TargetDisplay: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
