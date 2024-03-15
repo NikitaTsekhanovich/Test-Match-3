@@ -53,7 +53,7 @@ namespace GameField
           
             counterDestroyItem = 0;
             FindItemMatches(iCurrItem, jCurrItem, typeCurrItem);
-            UpdateSpawnItem();
+            // UpdateSpawnItem();
         }
 
         private void FindItemMatches(int i, int j, ItemTypes typeCurrItem)
@@ -115,7 +115,8 @@ namespace GameField
 
         private void DestroyItem(int i, int j)
         {
-            Destroy(coordItems[i, j]);
+            coordItems[i, j].GetComponent<ItemAnimator>().AnimationDestroyItem();
+            // Destroy(coordItems[i, j]);
             coordItems[i, j] = null;
             counterDestroyItem++;
         }

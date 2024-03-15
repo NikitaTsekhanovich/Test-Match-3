@@ -6,7 +6,6 @@ TagManager:
   tags:
   - GameField
   - BackgroundMusic
-  - BackgrondMusic
   layers:
   - Default
   - TransparentFX
