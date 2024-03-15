@@ -13,6 +13,7 @@ namespace Sounds
         private void Awake()
         {
             _gmObjects = GameObject.FindGameObjectsWithTag("BackgroundMusic");
+
             if (_gmObjects.Length == 0)
             {
                 _BGMusic = Instantiate(_BGMusic);
@@ -21,7 +22,7 @@ namespace Sounds
             }
             else
             {
-                _BGMusic = GameObject.Find("BackgroundMusic");
+                _BGMusic = GameObject.FindGameObjectWithTag("BackgroundMusic");
             }
         }
         
