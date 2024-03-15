@@ -58,7 +58,7 @@ namespace GameField
         private Button GetItem(Dictionary<Button, int> dictItems, List<Button> items)
         {
             var random = new Random();
-            var randomIndex = random.Next(0, 5);
+            var randomIndex = random.Next(0, items.Count);
 
             if (dictItems[items[randomIndex]] > 0)
             {

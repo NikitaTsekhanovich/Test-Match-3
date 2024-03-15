@@ -26,7 +26,7 @@ namespace GameLogic
 
         private void ResetMove()
         {
-            _moveText.text = "20";
+            _moveText.text = "40";
         }
         
         private void UpdateValue()

@@ -26,39 +26,39 @@ namespace GameLogic
             _imagesItem = new List<GameObject>();
         }
 
-        private void Start()
-        {
-            LoadImageScore();
-            LoadGoalItem();
-        }
-
-        private void LoadImageScore()
-        {
-            var random = new Random();
-            var randomIndex = random.Next(0, 5);
-
-            _currentItemType = _imagesItem[randomIndex].GetComponent<Item>().ItemType;
-            _currentImage.sprite = _imagesItem[randomIndex].GetComponent<Image>().sprite;
-        }
-
-        private void LoadGoalItem()
-        {
-            var random = new Random();
-            _randomGoal = random.Next(10, 12);
-
-            _goalText.text = $"Goal: {_randomGoal}x";
-        }
-        
         public void OnEnable()
         {
             InputHandler.OnScoreChanged += UpdateValue;
             SceneLoader.OnScoreChanged += ResetScore;
+            SceneLoader.OnLoadScore += LoadScore;
         }
         
         public void OnDisable()
         {
             InputHandler.OnScoreChanged -= UpdateValue;
             SceneLoader.OnScoreChanged -= ResetScore;
+            SceneLoader.OnLoadScore -= LoadScore;
+        }
+
+        private void LoadScore(int goal)
+        {
+            LoadImageScore();
+            LoadGoalItem(goal);
+        }
+
+        private void LoadImageScore()
+        {
+            var random = new Random();
+            var randomIndex = random.Next(0, _imagesItem.Count);
+
+            _currentItemType = _imagesItem[randomIndex].GetComponent<Item>().ItemType;
+            _currentImage.sprite = _imagesItem[randomIndex].GetComponent<Image>().sprite;
+        }
+
+        private void LoadGoalItem(int goal)
+        {
+            _randomGoal = goal;
+            _goalText.text = $"Goal: {_randomGoal}x";
         }
 
         private void ResetScore(ItemTypes itemType, int countItem)
@@ -70,12 +70,6 @@ namespace GameLogic
         {
             if (itemType == _currentItemType)
             {
-                // var newScore = 0;
-                //
-                // for (var i = 1; i < countItem + 1; i++)
-                //     newScore += i * 2;
-                //
-                // _scoreText.text = $"{newScore + int.Parse(_scoreText.text)}";
                 _scoreText.text = $"{countItem + int.Parse(_scoreText.text)}";
             }
 

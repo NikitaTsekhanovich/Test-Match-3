@@ -7,7 +7,8 @@ namespace Scene
     {
         public void LoadNextScene()
         {
-            AnimatorLoadingScreen.instance.AnimationFade("Game");
+            var nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
+            AnimatorLoadingScreen.instance.AnimationFade($"Level{nextLevelIndex}");
         }
         
         public void LoadPreviousScene()

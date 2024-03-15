@@ -2,6 +2,7 @@ using System;
 using GameField;
 using ItemsEssence;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Scene
 {
@@ -10,6 +11,7 @@ namespace Scene
         [SerializeField] private FieldCreator _fieldCreator;
         public static Action OnMoveChanged;
         public static Action<ItemTypes, int> OnScoreChanged;
+        public static Action<int> OnLoadScore;
 
         private void Start()
         {
@@ -18,7 +20,21 @@ namespace Scene
 
         private void LoadGameField(bool isRetry)
         {
-            _fieldCreator.CreateField(isRetry);
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                _fieldCreator.CreateField(isRetry);
+                OnLoadScore?.Invoke(LevelsSettings.GoalLevel1);
+            }
+            if (SceneManager.GetActiveScene().buildIndex == 2)
+            {
+                _fieldCreator.CreateField(isRetry);
+                OnLoadScore?.Invoke(LevelsSettings.GoalLevel2);
+            }
+            if (SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                _fieldCreator.CreateField(isRetry);
+                OnLoadScore?.Invoke(LevelsSettings.GoalLevel3);
+            }
         }
 
         public void RetryGameField()

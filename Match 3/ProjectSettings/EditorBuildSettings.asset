@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 4466e1d7ff00d594096b11c1294eb7a6
   - enabled: 1
-    path: Assets/Scenes/Game.unity
+    path: Assets/Scenes/Level1.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: d7e4218fed61dd44da99a1a558714b87
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: 13241aa93906cb04189af51fce64b967
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 19c6d9f1d4a1976419c4e455acf991b4, type: 2}
   m_UseUCBPForAssetBundles: 0
