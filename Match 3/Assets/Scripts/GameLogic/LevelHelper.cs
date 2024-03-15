@@ -6,6 +6,7 @@ namespace GameLogic
     {
         [SerializeField] private Canvas _sreenLose;
         [SerializeField] private Canvas _sreenWin;
+        private bool _isWin;
         
         public void OnEnable()
         {
@@ -21,11 +22,15 @@ namespace GameLogic
 
         private void LoseLevel()
         {
-            _sreenLose.gameObject.SetActive(true);
+            if (!_isWin)
+            {
+                _sreenLose.gameObject.SetActive(true);
+            }
         }
 
         private void WinLevel()
         {
+            _isWin = true;
             _sreenWin.gameObject.SetActive(true);
         }
     }

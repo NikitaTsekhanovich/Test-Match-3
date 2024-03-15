@@ -35,6 +35,11 @@ namespace Scene
                 _fieldCreator.CreateField(isRetry);
                 OnLoadScore?.Invoke(LevelsSettings.GoalLevel3);
             }
+            if (SceneManager.GetActiveScene().buildIndex == 4)
+            {
+                _fieldCreator.CreateField(isRetry);
+                OnLoadScore?.Invoke(LevelsSettings.GoalLevel4);
+            }
         }
 
         public void RetryGameField()

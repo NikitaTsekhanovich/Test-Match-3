@@ -79,7 +79,7 @@ namespace GameLogic
         private void CheckState()
         {
             if (int.Parse(_scoreText.text) >= _randomGoal)
-            {
+            {   
                 PointsOverflow?.Invoke();
             }
         }
