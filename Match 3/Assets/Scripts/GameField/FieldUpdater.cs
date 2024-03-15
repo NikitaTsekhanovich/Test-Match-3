@@ -1,3 +1,4 @@
+using System.Threading;
 using ItemsEssence;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,16 +34,16 @@ namespace GameField
             newButton.onClick.AddListener(inputHandler.Click);
             transformNewItem.SetParent(GameObject.FindWithTag("GameField").transform);
             transformNewItem.position = new Vector3(-2 + i, -4 + j, 1);
-            transformNewItem.localScale = new Vector3(1, 1, 1);
+            transformNewItem.localScale = new Vector3(0, 0, 0);
             newButton.name = $"{newButton.GetComponent<Item>().ItemType} {i}{j}";
 
             coordItems[i, j] = newButton.gameObject;
+            coordItems[i, j].GetComponent<ItemAnimator>().AnimationInstantiateItem();
         }
 
         public void UpdateGameField(char[] indexesItem)
         {
             CheckIntersectionItem(indexesItem);
-            // SpawnItem();
         }
 
         private void CheckIntersectionItem(char[] indexesItem)
@@ -53,7 +54,7 @@ namespace GameField
           
             counterDestroyItem = 0;
             FindItemMatches(iCurrItem, jCurrItem, typeCurrItem);
-            // UpdateSpawnItem();
+            UpdateSpawnItem();
         }
 
         private void FindItemMatches(int i, int j, ItemTypes typeCurrItem)

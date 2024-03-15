@@ -9,13 +9,21 @@ namespace ItemsEssence
         {
             DOTween.Sequence()
                 .Append(transform.DOScale(0, 2))
-                .AppendInterval(1f)
-                .AppendCallback(A);
+                .SetLink(gameObject)
+                .AppendInterval(0.5f)
+                .AppendCallback(KillItem);
         }
 
-        private void A()
+        private void KillItem()
         {
             Destroy(gameObject);
+        }
+
+        public void AnimationInstantiateItem()
+        {
+            DOTween.Sequence()
+                .Append(transform.DOScale(1, 2))
+                .AppendInterval(0.5f);
         }
     }
 }
