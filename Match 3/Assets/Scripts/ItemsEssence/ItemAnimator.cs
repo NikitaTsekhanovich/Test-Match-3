@@ -8,7 +8,8 @@ namespace ItemsEssence
         public void AnimationDestroyItem()
         {
             DOTween.Sequence()
-                .Append(transform.DOScale(0, 2))
+                .Append(transform.DOScale(1.5f, 0.5f))
+                .Append(transform.DOScale(0, 0.5f))
                 .SetLink(gameObject)
                 .AppendInterval(0.5f)
                 .AppendCallback(KillItem);
@@ -22,6 +23,7 @@ namespace ItemsEssence
         public void AnimationInstantiateItem()
         {
             DOTween.Sequence()
+                .AppendInterval(0.5f)
                 .Append(transform.DOScale(1, 2))
                 .AppendInterval(0.5f);
         }
