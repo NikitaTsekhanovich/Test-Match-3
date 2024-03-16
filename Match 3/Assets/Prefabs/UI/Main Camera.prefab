@@ -4727,7 +4727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9065234891572435554
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13869,9 +13869,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _progressBar: {fileID: 1574832087917645607}
-  _star1: {fileID: 7219935270961688094}
-  _star2: {fileID: 6691403998457719567}
-  _star3: {fileID: 911621453342900596}
+  _currentStars1: []
+  _currentStars2: []
+  _currentStars3: []
+  _bestScoreStars1: []
+  _bestScoreStars2: []
+  _bestScoreStars3: []
 --- !u!1 &7041851998054910728
 GameObject:
   m_ObjectHideFlags: 0

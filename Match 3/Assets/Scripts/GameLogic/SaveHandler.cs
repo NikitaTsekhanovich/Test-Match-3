@@ -19,7 +19,7 @@ namespace GameLogic
         {
             var indexScene = SceneManager.GetActiveScene().buildIndex;
             var bestScore = GetSaveBestCountStars();
-            // Debug.Log(bestScore);
+           
             if (bestScore < countStars)
             {
                 PlayerPrefs.SetInt($"Level{indexScene}CountStars", countStars);
