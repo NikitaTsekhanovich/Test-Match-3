@@ -13,13 +13,14 @@ namespace GameLogic
     public class ScoreHelper : MonoBehaviour, IObserver
     {
         [SerializeField] private List<GameObject> _imagesItem;
-        [SerializeField] private SpriteRenderer _currentImage;
+        [SerializeField] private Image _currentImage;
         [SerializeField] private TextMeshProUGUI _goalText;
         [SerializeField] private TextMeshProUGUI _scoreText;
-        private int _randomGoal;
+        private int _goalScore;
         private ItemTypes _currentItemType;
 
-        public static Action PointsOverflow; 
+        public static Action OnPointsOverflow;
+        public static Action<float, int> OnChangeProgressBar;
 
         public ScoreHelper()
         {
@@ -57,8 +58,8 @@ namespace GameLogic
 
         private void LoadGoalItem(int goal)
         {
-            _randomGoal = goal;
-            _goalText.text = $"Goal: {_randomGoal}x";
+            _goalScore = goal;
+            _goalText.text = $"Goal: {_goalScore}x";
         }
 
         private void ResetScore(ItemTypes itemType, int countItem)
@@ -73,14 +74,15 @@ namespace GameLogic
                 _scoreText.text = $"{countItem + int.Parse(_scoreText.text)}";
             }
 
+            OnChangeProgressBar?.Invoke(int.Parse(_scoreText.text), _goalScore);
             CheckState();
         }
 
         private void CheckState()
         {
-            if (int.Parse(_scoreText.text) >= _randomGoal)
+            if (int.Parse(_scoreText.text) >= _goalScore)
             {   
-                PointsOverflow?.Invoke();
+                OnPointsOverflow?.Invoke();
             }
         }
     }

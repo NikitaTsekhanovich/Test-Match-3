@@ -12,6 +12,7 @@ namespace Scene
         public static Action OnMoveChanged;
         public static Action<ItemTypes, int> OnScoreChanged;
         public static Action<int> OnLoadScore;
+        public static Action OnRetryProgressBar;
 
         private void Start()
         {
@@ -47,6 +48,7 @@ namespace Scene
             LoadGameField(true);
             OnMoveChanged?.Invoke();
             OnScoreChanged?.Invoke(ItemTypes.Empty, -1);
+            OnRetryProgressBar.Invoke();
         }
     }
 }

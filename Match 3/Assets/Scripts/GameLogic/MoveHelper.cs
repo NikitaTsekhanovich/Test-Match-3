@@ -10,7 +10,7 @@ namespace GameLogic
     public class MoveHelper : MonoBehaviour, IObserver
     {
         [SerializeField] private TextMeshProUGUI _moveText;
-        public static Action ZeroMovePoint;
+        public static Action OnZeroMovePoint;
 
         public void OnEnable()
         {
@@ -39,7 +39,7 @@ namespace GameLogic
         {
             if (int.Parse(_moveText.text) <= 0)
             {
-                ZeroMovePoint?.Invoke();
+                OnZeroMovePoint?.Invoke();
             }
         }
     }

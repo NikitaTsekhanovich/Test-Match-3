@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6873050546976852563}
   - component: {fileID: 3412365104132767927}
   - component: {fileID: 4412482110990171771}
+  - component: {fileID: 7754276230365173197}
   m_Layer: 0
   m_Name: Banana
   m_TagString: Untagged
@@ -147,6 +148,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7754276230365173197}
+        m_TargetAssemblyTypeName: Sounds.EffectsSoundHandler, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3412365104132767927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,3 +270,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7754276230365173197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7895211475851449952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8032b2e927b2c8943a5b6e2127f75146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 4412482110990171771}

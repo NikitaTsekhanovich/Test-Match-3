@@ -116,7 +116,7 @@ namespace GameField
 
         private void DestroyItem(int i, int j)
         {
-            coordItems[i, j].GetComponent<AudioSource>().Play();
+            // coordItems[i, j].GetComponent<AudioSource>().Play();
             coordItems[i, j].GetComponent<ItemAnimator>().AnimationDestroyItem();
             // Destroy(coordItems[i, j]);
             coordItems[i, j] = null;

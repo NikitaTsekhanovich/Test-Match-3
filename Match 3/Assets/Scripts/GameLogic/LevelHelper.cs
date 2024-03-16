@@ -10,14 +10,14 @@ namespace GameLogic
         
         public void OnEnable()
         {
-            MoveHelper.ZeroMovePoint += LoseLevel;
-            ScoreHelper.PointsOverflow += WinLevel;
+            MoveHelper.OnZeroMovePoint += LoseLevel;
+            ScoreHelper.OnPointsOverflow += WinLevel;
         }
 
         public void OnDisable()
         {
-            MoveHelper.ZeroMovePoint -= LoseLevel;
-            ScoreHelper.PointsOverflow -= WinLevel;
+            MoveHelper.OnZeroMovePoint -= LoseLevel;
+            ScoreHelper.OnPointsOverflow -= WinLevel;
         }
 
         private void LoseLevel()
