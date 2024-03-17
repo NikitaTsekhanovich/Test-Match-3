@@ -1,4 +1,3 @@
-using System.Threading;
 using ItemsEssence;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +14,6 @@ namespace GameField
             if (Instance == null)
             {
                 Instance = this;
-                // DontDestroyOnLoad(this.gameObject);
                 return;
             }
             
@@ -26,6 +24,11 @@ namespace GameField
         
         public ItemTypes GetTypeCurrentItem(char[] indexesItem) =>
             coordItems[indexesItem[0] - '0', indexesItem[1] - '0'].GetComponent<Item>().ItemType;
+        
+        public void UpdateGameField(char[] indexesItem)
+        {
+            CheckIntersectionItem(indexesItem);
+        }
 
         protected void SpawnItem(Button newButton, int i, int j)
         {
@@ -39,11 +42,6 @@ namespace GameField
 
             coordItems[i, j] = newButton.gameObject;
             coordItems[i, j].GetComponent<ItemAnimator>().AnimationInstantiateItem();
-        }
-
-        public void UpdateGameField(char[] indexesItem)
-        {
-            CheckIntersectionItem(indexesItem);
         }
 
         private void CheckIntersectionItem(char[] indexesItem)
@@ -60,55 +58,25 @@ namespace GameField
         private void FindItemMatches(int i, int j, ItemTypes typeCurrItem)
         {
             // Move left
-            // CheckSide(i - 1, j, typeCurrItem);
-            if (i - 1 > -1)
-            {
-                if (coordItems[i - 1, j] != null)
-                {
-                    if (coordItems[i - 1, j].GetComponent<Item>().ItemType == typeCurrItem)
-                    {
-                        // _coordItems[i - 1, j].GetComponent<AudioSource>().Play();
-                        DestroyItem(i - 1, j);
-                        FindItemMatches(i - 1, j, typeCurrItem);
-                    }
-                }
-            }
+            CheckSide(i - 1, j, typeCurrItem, i - 1 > -1);
             // Move up
-            if (j + 1 < 8)
-            {
-                if (coordItems[i, j + 1] != null)
-                {
-                    if (coordItems[i, j + 1].GetComponent<Item>().ItemType == typeCurrItem)
-                    {
-                        // _coordItems[i, j + 1].GetComponent<AudioSource>().Play();
-                        DestroyItem(i, j + 1);
-                        FindItemMatches(i, j + 1, typeCurrItem);
-                    }
-                }
-            }
+            CheckSide(i, j + 1, typeCurrItem, j + 1 < 8);
             // Move down
-            if (j - 1 > -1)
-            {
-                if (coordItems[i, j - 1] != null)
-                {
-                    if (coordItems[i, j - 1].GetComponent<Item>().ItemType == typeCurrItem)
-                    {
-                        // _coordItems[i, j - 1].GetComponent<AudioSource>().Play();
-                        DestroyItem(i, j - 1);
-                        FindItemMatches(i, j - 1, typeCurrItem);
-                    }
-                }
-            }
+            CheckSide(i, j - 1, typeCurrItem, j - 1 > -1);
             // Move right
-            if (i + 1 < 5)
+            CheckSide(i + 1, j, typeCurrItem, i + 1 < 5);
+        }
+        
+        private void CheckSide(int i, int j, ItemTypes typeCurrItem, bool fieldLimitation)
+        {
+            if (fieldLimitation)
             {
-                if (coordItems[i + 1, j] != null)
+                if (coordItems[i, j] != null)
                 {
-                    if (coordItems[i + 1, j].GetComponent<Item>().ItemType == typeCurrItem)
+                    if (coordItems[i, j].GetComponent<Item>().ItemType == typeCurrItem)
                     {
-                        // _coordItems[i + 1, j].GetComponent<AudioSource>().Play();
-                        DestroyItem(i + 1, j);
-                        FindItemMatches(i + 1, j, typeCurrItem);
+                        DestroyItem(i, j);
+                        FindItemMatches(i, j, typeCurrItem);
                     }
                 }
             }
@@ -116,30 +84,10 @@ namespace GameField
 
         private void DestroyItem(int i, int j)
         {
-            // coordItems[i, j].GetComponent<AudioSource>().Play();
             coordItems[i, j].GetComponent<ItemAnimator>().AnimationDestroyItem();
-            // Destroy(coordItems[i, j]);
             coordItems[i, j] = null;
             counterDestroyItem++;
         }
-
-        // private void CheckSide(int i, int j, ItemTypes typeCurrItem, int fieldLimitation)
-        // {
-        //     if (i > fieldLimitation)
-        //     {
-        //         if (coordItems[i, j] != null)
-        //         {
-        //             if (coordItems[i, j].GetComponent<Item>().ItemType == typeCurrItem)
-        //             {
-        //                 // _coordItems[i - 1, j].GetComponent<AudioSource>().Play();
-        //                 Destroy(coordItems[i, j]);
-        //                 coordItems[i, j] = null;
-        //                 counterDestroyItem++;
-        //                 FindItemMatches(i, j, typeCurrItem);
-        //             }
-        //         }
-        //     }
-        // }
 
         private void UpdateSpawnItem()
         {
@@ -149,7 +97,6 @@ namespace GameField
             {
                 for (var j = 0; j < SettingsGameField.Height; j++)
                 {
-
                     if (coordItems[i, j] == null)
                     {
                         var randomIndex = random.Next(0, 5);
