@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace GameLogic
 {
     interface IObserver

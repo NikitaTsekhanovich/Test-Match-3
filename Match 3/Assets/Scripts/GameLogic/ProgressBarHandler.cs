@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Scene;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace GameLogic
@@ -21,13 +20,13 @@ namespace GameLogic
 
         public void OnEnable()
         {
-            ScoreHelper.OnChangeProgressBar += ChangeProgressBar;
+            ScoreHandler.OnChangeProgressBar += ChangeProgressBar;
             SceneLoader.OnRetryProgressBar += RetryProgressBar;
         }
 
         public void OnDisable()
         {
-            ScoreHelper.OnChangeProgressBar -= ChangeProgressBar;
+            ScoreHandler.OnChangeProgressBar -= ChangeProgressBar;
             SceneLoader.OnRetryProgressBar -= RetryProgressBar;
         }
 
@@ -49,37 +48,33 @@ namespace GameLogic
             }
         }
 
+        private void ChangeStateStar(List<Image> stars, bool isActive)
+        {
+            foreach (var star in stars)
+            {
+                star.gameObject.SetActive(isActive);
+            }
+        }
+
         private void ChangeStarsScore(float currentProgress)
         {
             OnSaveBestScore?.Invoke(0);
 
             if (currentProgress >= 0.3f)
             {
-                foreach (var star1 in _currentStars1)
-                {
-                    star1.gameObject.SetActive(true);
-                }
-
+                ChangeStateStar(_currentStars1, true);
                 OnSaveBestScore?.Invoke(1);
             }
 
             if (currentProgress >= 0.64f)
             {
-                foreach (var star2 in _currentStars2)
-                {
-                    star2.gameObject.SetActive(true);
-                }
-
+                ChangeStateStar(_currentStars2, true);
                 OnSaveBestScore?.Invoke(2);
             }
 
             if (currentProgress >= 0.96f)
             {
-                foreach (var star3 in _currentStars3)
-                {
-                    star3.gameObject.SetActive(true);
-                }
-
+                ChangeStateStar(_currentStars3, true);
                 OnSaveBestScore?.Invoke(3);
             }
         }
@@ -90,42 +85,24 @@ namespace GameLogic
 
             if (countStars >= 1)
             {
-                foreach (var star1 in _bestScoreStars1)
-                {
-                    star1.gameObject.SetActive(true);
-                }
+                ChangeStateStar(_bestScoreStars1, true);
             }
             if (countStars >= 2)
             {
-                foreach (var star2 in _bestScoreStars2)
-                {
-                    star2.gameObject.SetActive(true);
-                }
+                ChangeStateStar(_bestScoreStars2, true);
             }
             if (countStars >= 3)
             {
-                foreach (var star3 in _bestScoreStars3)
-                {
-                    star3.gameObject.SetActive(true);
-                }
+                ChangeStateStar(_bestScoreStars3, true);
             }
         }
 
         private void RetryProgressBar()
         {
             _progressBar.fillAmount = 0;
-            foreach (var star1 in _currentStars1)
-            {
-                star1.gameObject.SetActive(false);
-            }
-            foreach (var star2 in _currentStars2)
-            {
-                star2.gameObject.SetActive(false);
-            }
-            foreach (var star3 in _currentStars3)
-            {
-                star3.gameObject.SetActive(false);
-            }
+            ChangeStateStar(_currentStars1, false);
+            ChangeStateStar(_currentStars2, false);
+            ChangeStateStar(_currentStars3, false);
         }
     }
 }

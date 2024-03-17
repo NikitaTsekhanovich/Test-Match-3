@@ -3,13 +3,13 @@ using UnityEngine;
 using TMPro;
 using GameField;
 using Scene;
-using Unity.VisualScripting;
 
 namespace GameLogic
 {
-    public class MoveHelper : MonoBehaviour, IObserver
+    public class MoveHandler : MonoBehaviour, IObserver
     {
         [SerializeField] private TextMeshProUGUI _moveText;
+        
         public static Action OnZeroMovePoint;
 
         public void OnEnable()

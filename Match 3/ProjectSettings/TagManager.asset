@@ -6,6 +6,12 @@ TagManager:
   tags:
   - GameField
   - BackgroundMusic
+  - CurrentStar1
+  - CurrentStar2
+  - CurrentStar3
+  - BestStar1
+  - BestStar2
+  - BestStar3
   layers:
   - Default
   - TransparentFX

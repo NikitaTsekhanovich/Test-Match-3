@@ -9,6 +9,7 @@ namespace Scene
     public class SceneLoader : MonoBehaviour
     {
         [SerializeField] private FieldCreator _fieldCreator;
+        
         public static Action OnMoveChanged;
         public static Action<ItemTypes, int> OnScoreChanged;
         public static Action<int> OnLoadScore;

@@ -10,7 +10,7 @@ using Random = System.Random;
 
 namespace GameLogic
 {
-    public class ScoreHelper : MonoBehaviour, IObserver
+    public class ScoreHandler : MonoBehaviour, IObserver
     {
         [SerializeField] private List<GameObject> _imagesItem;
         [SerializeField] private Image _currentImage;
@@ -22,7 +22,7 @@ namespace GameLogic
         public static Action OnPointsOverflow;
         public static Action<float, int> OnChangeProgressBar;
 
-        public ScoreHelper()
+        public ScoreHandler()
         {
             _imagesItem = new List<GameObject>();
         }
@@ -43,11 +43,11 @@ namespace GameLogic
 
         private void LoadScore(int goal)
         {
-            LoadImageScore();
-            LoadGoalItem(goal);
+            LoadImageGoal();
+            LoadScoreGoal(goal);
         }
 
-        private void LoadImageScore()
+        private void LoadImageGoal()
         {
             var random = new Random();
             var randomIndex = random.Next(0, _imagesItem.Count);
@@ -56,7 +56,7 @@ namespace GameLogic
             _currentImage.sprite = _imagesItem[randomIndex].GetComponent<Image>().sprite;
         }
 
-        private void LoadGoalItem(int goal)
+        private void LoadScoreGoal(int goal)
         {
             _goalScore = goal;
             _goalText.text = $"Goal: {_goalScore}x";

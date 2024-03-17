@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GameLogic
 {
-    public class LevelHelper : MonoBehaviour, IObserver
+    public class GameStateHandler : MonoBehaviour, IObserver
     {
         [SerializeField] private Canvas _sreenLose;
         [SerializeField] private Canvas _sreenWin;
@@ -10,14 +10,14 @@ namespace GameLogic
         
         public void OnEnable()
         {
-            MoveHelper.OnZeroMovePoint += LoseLevel;
-            ScoreHelper.OnPointsOverflow += WinLevel;
+            MoveHandler.OnZeroMovePoint += LoseLevel;
+            ScoreHandler.OnPointsOverflow += WinLevel;
         }
 
         public void OnDisable()
         {
-            MoveHelper.OnZeroMovePoint -= LoseLevel;
-            ScoreHelper.OnPointsOverflow -= WinLevel;
+            MoveHandler.OnZeroMovePoint -= LoseLevel;
+            ScoreHandler.OnPointsOverflow -= WinLevel;
         }
 
         private void LoseLevel()
