@@ -36,8 +36,7 @@ namespace GameField
 
             newButton.onClick.AddListener(inputHandler.Click);
             transformNewItem.SetParent(GameObject.FindWithTag("GameField").transform);
-            transformNewItem.position = new Vector3(-2 + i, -4 + j, 1);
-            transformNewItem.localScale = new Vector3(0, 0, 0);
+            transformNewItem.localPosition = new Vector3(-330 + i * 163, -610 + j * 177, 1);
             newButton.name = $"{newButton.GetComponent<Item>().ItemType} {i}{j}";
 
             coordItems[i, j] = newButton.gameObject;
@@ -69,16 +68,12 @@ namespace GameField
         
         private void CheckSide(int i, int j, ItemTypes typeCurrItem, bool fieldLimitation)
         {
-            if (fieldLimitation)
+            if (fieldLimitation && 
+                coordItems[i, j] != null &&
+                coordItems[i, j].GetComponent<Item>().ItemType == typeCurrItem)
             {
-                if (coordItems[i, j] != null)
-                {
-                    if (coordItems[i, j].GetComponent<Item>().ItemType == typeCurrItem)
-                    {
-                        DestroyItem(i, j);
-                        FindItemMatches(i, j, typeCurrItem);
-                    }
-                }
+                DestroyItem(i, j);
+                FindItemMatches(i, j, typeCurrItem);
             }
         }
 

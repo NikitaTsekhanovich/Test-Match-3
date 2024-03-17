@@ -12,6 +12,8 @@ TagManager:
   - BestStar1
   - BestStar2
   - BestStar3
+  - Slot
+  - UserInterface
   layers:
   - Default
   - TransparentFX

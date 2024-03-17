@@ -41,19 +41,16 @@ namespace GameLogic
             SceneLoader.OnLoadScore -= LoadScore;
         }
 
-        private void LoadScore(int goal)
+        private void LoadScore(int goal, GameObject imageGoal)
         {
-            LoadImageGoal();
+            LoadImageGoal(imageGoal);
             LoadScoreGoal(goal);
         }
 
-        private void LoadImageGoal()
+        private void LoadImageGoal(GameObject imageGoal)
         {
-            var random = new Random();
-            var randomIndex = random.Next(0, _imagesItem.Count);
-
-            _currentItemType = _imagesItem[randomIndex].GetComponent<Item>().ItemType;
-            _currentImage.sprite = _imagesItem[randomIndex].GetComponent<Image>().sprite;
+            _currentItemType = imageGoal.GetComponent<Item>().ItemType;
+            _currentImage.sprite = imageGoal.GetComponent<Image>().sprite;
         }
 
         private void LoadScoreGoal(int goal)

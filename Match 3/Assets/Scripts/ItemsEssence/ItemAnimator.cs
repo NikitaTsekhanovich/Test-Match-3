@@ -9,7 +9,7 @@ namespace ItemsEssence
         {
             DOTween.Sequence()
                 .Append(transform.DOScale(1.5f, 0.5f))
-                .Append(transform.DOScale(0, 0.5f))
+                .Append(transform.DOScale(0, 0.2f))
                 .SetLink(gameObject)
                 .AppendInterval(0.5f)
                 .AppendCallback(KillItem);
@@ -24,7 +24,7 @@ namespace ItemsEssence
         {
             DOTween.Sequence()
                 .AppendInterval(0.5f)
-                .Append(transform.DOScale(1, 2))
+                .Append(transform.DOScale(1, 1))
                 .AppendInterval(0.5f);
         }
     }

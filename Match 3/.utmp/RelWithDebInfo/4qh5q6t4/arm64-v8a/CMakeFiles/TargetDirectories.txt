@@ -1,0 +1,8 @@
+E:/Test Match-3/Test-Match-3/Match 3/.utmp/RelWithDebInfo/4qh5q6t4/arm64-v8a/CMakeFiles/edit_cache.dir
+E:/Test Match-3/Test-Match-3/Match 3/.utmp/RelWithDebInfo/4qh5q6t4/arm64-v8a/CMakeFiles/rebuild_cache.dir
+E:/Test Match-3/Test-Match-3/Match 3/.utmp/RelWithDebInfo/4qh5q6t4/arm64-v8a/GameActivity/CMakeFiles/game.dir
+E:/Test Match-3/Test-Match-3/Match 3/.utmp/RelWithDebInfo/4qh5q6t4/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
+E:/Test Match-3/Test-Match-3/Match 3/.utmp/RelWithDebInfo/4qh5q6t4/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir
+E:/Test Match-3/Test-Match-3/Match 3/.utmp/RelWithDebInfo/4qh5q6t4/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
+E:/Test Match-3/Test-Match-3/Match 3/.utmp/RelWithDebInfo/4qh5q6t4/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
+E:/Test Match-3/Test-Match-3/Match 3/.utmp/RelWithDebInfo/4qh5q6t4/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir
