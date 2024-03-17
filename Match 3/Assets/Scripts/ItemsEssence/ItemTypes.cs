@@ -7,6 +7,7 @@ namespace ItemsEssence
         Grape,
         Orange,
         Pear,
+        Rock,
         Empty
     }
 }
