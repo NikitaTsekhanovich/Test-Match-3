@@ -24,7 +24,7 @@ namespace GameLogic
             {
                 PlayerPrefs.SetInt($"Level{indexScene}CountStars", countStars);
             }
-            // PlayerPrefs.DeleteAll();
+            // PlayerPrefs.DeleteAll(); // сброс сохраненного счета
         }
 
         public static int GetSaveBestCountStars()

@@ -32,6 +32,7 @@ namespace GameLogic
             InputHandler.OnScoreChanged += UpdateValue;
             SceneLoader.OnScoreChanged += ResetScore;
             SceneLoader.OnLoadScore += LoadScore;
+            FieldUpdater.OnScoreChanged += UpdateValue;
         }
         
         public void OnDisable()
@@ -39,6 +40,7 @@ namespace GameLogic
             InputHandler.OnScoreChanged -= UpdateValue;
             SceneLoader.OnScoreChanged -= ResetScore;
             SceneLoader.OnLoadScore -= LoadScore;
+            FieldUpdater.OnScoreChanged -= UpdateValue;
         }
 
         private void LoadScore(int goal, GameObject imageGoal)

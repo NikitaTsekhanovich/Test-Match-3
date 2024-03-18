@@ -24,31 +24,47 @@ namespace Scene
         {
             if (SceneManager.GetActiveScene().buildIndex == 1)
             {
-                _fieldCreator.CreateField(isRetry);
+                _fieldCreator.CreateField(
+                    isRetry, 
+                    LevelsSettings.GoalLevel1,
+                    null,
+                    null);
                 OnLoadScore?.Invoke(
                     LevelsSettings.GoalLevel1,
-                    LevelsSettings.instance.ImageGoalItemLevel1);
+                    LevelsSettings.instance.ImageGoalItemLevel1.gameObject);
             }
             if (SceneManager.GetActiveScene().buildIndex == 2)
             {
-                _fieldCreator.CreateField(isRetry);
+                _fieldCreator.CreateField(
+                    isRetry, 
+                    LevelsSettings.GoalLevel2,
+                    null,
+                    null);
                 OnLoadScore?.Invoke(
                     LevelsSettings.GoalLevel2,
-                    LevelsSettings.instance.ImageGoalItemLevel2);
+                    LevelsSettings.instance.ImageGoalItemLevel2.gameObject);
             }
             if (SceneManager.GetActiveScene().buildIndex == 3)
             {
-                _fieldCreator.CreateField(isRetry);
+                _fieldCreator.CreateField(
+                    isRetry, 
+                    LevelsSettings.GoalLevel3,
+                    LevelsSettings.instance.ImageGoalItemLevel3,
+                    LevelsSettings.instance.coordBlockingItemsLevel3);
                 OnLoadScore?.Invoke(
                     LevelsSettings.GoalLevel3,
-                    LevelsSettings.instance.ImageGoalItemLevel3);
+                    LevelsSettings.instance.ImageGoalItemLevel3.gameObject);
             }
             if (SceneManager.GetActiveScene().buildIndex == 4)
             {
-                _fieldCreator.CreateField(isRetry);
+                _fieldCreator.CreateField(
+                    isRetry, 
+                    LevelsSettings.GoalLevel4,
+                    LevelsSettings.instance.ImageGoalItemLevel4,
+                    LevelsSettings.instance.coordBlockingItemsLevel4);
                 OnLoadScore?.Invoke(
                     LevelsSettings.GoalLevel4,
-                    LevelsSettings.instance.ImageGoalItemLevel4);
+                    LevelsSettings.instance.ImageGoalItemLevel4.gameObject);
             }
         }
 

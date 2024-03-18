@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ItemsEssence;
+using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
 
@@ -7,25 +8,54 @@ namespace GameField
 {
     public class FieldCreator : FieldUpdater
     {
-        public void CreateField(bool isRetry)
+        public void CreateField(
+            bool isRetry, 
+            int countBlockingItems, 
+            Button blockingItem,
+            int[,] setupCoordItems)
         {
             if (isRetry)
             {
-                ClearField();
+                ClearField(coordItems);
+                ClearField(coordBlockingItems);
             }
+            
             inputHandler = gameObject.AddComponent<InputHandler>();
             var availableItems = GetAvailableItems();
             FillGameField(availableItems);
+            
+            if (setupCoordItems != null &&
+                blockingItem.GetComponent<Item>().ItemType == ItemTypes.Rock)
+            {
+                SpawnBlockingItem(countBlockingItems, blockingItem, setupCoordItems);
+            }
         }
 
-        private void ClearField()
+        private void SpawnBlockingItem(
+            int countBlockingItems, 
+            Button blockingItem, 
+            int[,] setupCoordItems)
+        {
+            for (var i = 0; i < countBlockingItems; i++)
+            {
+                var newBlockingItem = Instantiate(blockingItem);
+                
+                SpawnItem(
+                    newBlockingItem,
+                    setupCoordItems[i, 0],
+                    setupCoordItems[i, 1],
+                    coordBlockingItems);
+            }
+        }
+
+        private void ClearField(GameObject[,] coord)
         {
             for (var i = 0; i < SettingsGameField.Width; i++)
             {
                 for (var j = 0; j < SettingsGameField.Height; j++)
                 {
-                    Destroy(coordItems[i, j]);
-                    coordItems[i, j] = null;
+                    Destroy(coord[i, j]);
+                    coord[i, j] = null;
                 }
             }
         }
@@ -37,7 +67,7 @@ namespace GameField
                 for (var j = 0; j < SettingsGameField.Height; j++)
                 {
                     var newButton = Instantiate(GetItem(availableItems, items));
-                    SpawnItem(newButton, i, j);
+                    SpawnItem(newButton, i, j, coordItems);
                 }
             }
         }

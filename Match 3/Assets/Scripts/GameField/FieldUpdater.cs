@@ -1,3 +1,4 @@
+using System;
 using ItemsEssence;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,7 @@ namespace GameField
 {
     public class FieldUpdater : Field
     {
+        public static Action<ItemTypes, int> OnScoreChanged;
         public static FieldUpdater Instance { get; private set; }
 
         private void Awake()
@@ -30,17 +32,19 @@ namespace GameField
             CheckIntersectionItem(indexesItem);
         }
 
-        protected void SpawnItem(Button newButton, int i, int j)
+        protected void SpawnItem(Button newButton, int i, int j, GameObject[,] coords)
         {
             var transformNewItem = newButton.transform;
 
-            newButton.onClick.AddListener(inputHandler.Click);
+            if (newButton.GetComponent<Item>().ItemType != ItemTypes.Rock)
+                newButton.onClick.AddListener(inputHandler.Click);
+
             transformNewItem.SetParent(GameObject.FindWithTag("GameField").transform);
             transformNewItem.localPosition = new Vector3(-330 + i * 163, -610 + j * 177, 1);
             newButton.name = $"{newButton.GetComponent<Item>().ItemType} {i}{j}";
 
-            coordItems[i, j] = newButton.gameObject;
-            coordItems[i, j].GetComponent<ItemAnimator>().AnimationInstantiateItem();
+            coords[i, j] = newButton.gameObject;
+            coords[i, j].GetComponent<ItemAnimator>().AnimationInstantiateItem();
         }
 
         private void CheckIntersectionItem(char[] indexesItem)
@@ -69,19 +73,29 @@ namespace GameField
         private void CheckSide(int i, int j, ItemTypes typeCurrItem, bool fieldLimitation)
         {
             if (fieldLimitation && 
+                coordBlockingItems[i, j] != null &&
+                counterDestroyItem >= 1)
+            {
+                OnScoreChanged?.Invoke(
+                    coordBlockingItems[i, j].GetComponent<Item>().ItemType, 1);
+                DestroyItem(i, j, coordBlockingItems);
+                return;
+            }
+            
+            if (fieldLimitation && 
                 coordItems[i, j] != null &&
                 coordItems[i, j].GetComponent<Item>().ItemType == typeCurrItem)
             {
-                DestroyItem(i, j);
+                DestroyItem(i, j, coordItems);
+                counterDestroyItem++;
                 FindItemMatches(i, j, typeCurrItem);
             }
         }
 
-        private void DestroyItem(int i, int j)
+        private void DestroyItem(int i, int j, GameObject[,] coord)
         {
-            coordItems[i, j].GetComponent<ItemAnimator>().AnimationDestroyItem();
-            coordItems[i, j] = null;
-            counterDestroyItem++;
+            coord[i, j].GetComponent<ItemAnimator>().AnimationDestroyItem();
+            coord[i, j] = null;
         }
 
         private void UpdateSpawnItem()
@@ -97,7 +111,7 @@ namespace GameField
                         var randomIndex = random.Next(0, 5);
 
                         var newButton = Instantiate(items[randomIndex]);
-                        SpawnItem(newButton, i, j);
+                        SpawnItem(newButton, i, j, coordItems);
                     }
                 }
             }
