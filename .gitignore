@@ -44,7 +44,6 @@
 *.pdb.meta
 *.mdb.meta
 */sysinfo.txt
-*.apk
 *.unitypackage
 crashlytics-build.properties
 
